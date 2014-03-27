@@ -31,9 +31,10 @@ MeanIgniteGenerator.prototype.askFor = function askFor() {
     message: 'Enter app description'
   },
   {
+      type: 'confirm',
       name: 'installTest',
-      message: 'Would you like to install test folder ? y/n',
-      default: 'n'
+      message: 'Would you like to install test folder?',
+      default: true
   },
   {
     name: "jqueryVersion",
@@ -87,7 +88,7 @@ MeanIgniteGenerator.prototype.askFor = function askFor() {
     this.angularRouteVersion =  answers.angularRouteVersion;
     this.angularBootstrapVersion = answers.angularBootstrapVersion;
     this.bootstrapVersion = answers.bootstrapVersion;
-    this.installTest = answers.installTest.toLowerCase() == 'y' ? true : false;
+    this.installTest = answers.installTest;
     cb();
   }.bind(this));
 };
