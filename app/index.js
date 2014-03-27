@@ -157,6 +157,7 @@ MeanIgniteGenerator.prototype.configSetup = function configSetup() {
   this.mkdir('config/env');
 
   this.copy('config/env/all.js');
+  this.copy('config/env/localhost.js');
   this.copy('config/env/development.js');
   this.copy('config/env/production.js');
   this.copy('config/env/test.js');
