@@ -25,9 +25,15 @@ MeanIgniteGenerator.prototype.askFor = function askFor() {
   var prompts = [{
     name: 'appName',
     message: 'Enter app name'
-  },{
+  },
+  {
     name: 'appDescription',
     message: 'Enter app description'
+  },
+  {
+      name: 'installTest',
+      message: 'Would you like to install test folder ? y/n',
+      default: 'n'
   },
   {
     name: "jqueryVersion",
@@ -71,9 +77,6 @@ MeanIgniteGenerator.prototype.askFor = function askFor() {
   }];
 
   this.prompt(prompts, function (answers) {
-    var features = answers.features;
-    function hasFeature(feat) { return features !== undefined && features.indexOf(feat) !== -1; }
-//    this.compassBootstrap = hasFeature('compassBootstrap');
     this.appName = answers.appName;
     this.appDescription = answers.appDescription;
     this.jqueryVersion =  answers.jqueryVersion;
@@ -84,6 +87,7 @@ MeanIgniteGenerator.prototype.askFor = function askFor() {
     this.angularRouteVersion =  answers.angularRouteVersion;
     this.angularBootstrapVersion = answers.angularBootstrapVersion;
     this.bootstrapVersion = answers.bootstrapVersion;
+    this.installTest = answers.installTest.toLowerCase() == 'y' ? true : false;
     cb();
   }.bind(this));
 };
@@ -200,16 +204,18 @@ MeanIgniteGenerator.prototype.publicSetup = function publicSetup() {
 };
 
 MeanIgniteGenerator.prototype.testSetup = function serverSetup() {
-    this.mkdir('test');
-    this.mkdir('test/karma');
-    this.mkdir('test/mocha');
-    this.mkdir('test/mocha/user');
-    this.copy('test/mocha/user/model.js');
-    this.mkdir('test/karma/unit');
-    this.mkdir('test/karma/unit/controllers');
-    this.copy('test/karma/karma.conf.js');
-    this.copy('test/karma/unit/controllers/headers.spec.js');
-    this.copy('test/karma/unit/controllers/index.spec.js');
+    if (this.installTest){
+        this.mkdir('test');
+        this.mkdir('test/karma');
+        this.mkdir('test/mocha');
+        this.mkdir('test/mocha/user');
+        this.copy('test/mocha/user/model.js');
+        this.mkdir('test/karma/unit');
+        this.mkdir('test/karma/unit/controllers');
+        this.copy('test/karma/karma.conf.js');
+        this.copy('test/karma/unit/controllers/headers.spec.js');
+        this.copy('test/karma/unit/controllers/index.spec.js');
+    }
 };
 
 MeanIgniteGenerator.prototype.serverSetup = function serverSetup() {
