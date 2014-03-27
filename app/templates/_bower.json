@@ -1,0 +1,29 @@
+{
+    "name": "<%= _.slugify(appName) %>",
+    "version": "0.0.1",
+    "dependencies": {
+        "jquery": "<%= jqueryVersion %>",
+        "angular": "<%= angularVersion %>",
+        "angular-resource": "latest",
+        "angular-cookies": "latest",
+        "angular-mocks": "latest",
+        "angular-route": "latest",
+        "angular-bootstrap": "<%= angularBootstrapVersion %>",
+        "angular-ui-router": "#master",
+        "angular-facebook": "~0.2.2",
+        "bootstrap": "<%= bootstrapVersion %>",
+        "respond": "~1.4.2",
+        "html5shiv": "~3.7.0",
+        "json3": "~3.3.0"
+    },
+    "exportsOverride": {
+        "bootstrap": {
+            "css": "docs/assets/css/bootstrap*.css",
+            "js": "docs/assets/js/bootstrap.js",
+            "img": "docs/assets/img/glyphicons-halflings*.png"
+        },
+        "angular-ui-utils": {
+            "modules": "modules/route/route.js"
+        }
+    }
+}
